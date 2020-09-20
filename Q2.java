@@ -37,7 +37,6 @@ public class Q2 {
             else if (arr[i] < secondMin) {
                 secondMin = arr[i];
                 minIndex2 = i;
-
             }
         }
 
