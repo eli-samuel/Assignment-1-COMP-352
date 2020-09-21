@@ -13,22 +13,15 @@ public class Q1 {
             if (arr[i]%2 == 1) numOdds++;
         }
 
-        // If all odd, end program
-        if (numOdds == arr.length-1) {
-            System.out.println(Arrays.toString(arr));
-            System.exit(0);
-        }
-
+        int num = 0;
         for (int i=0; i<arr.length-numOdds; i++) {
-            System.out.println(arr[i]);
             if (arr[i]%2 == 1) {
-                int num = arr[i];
+                num = arr[i];
                 for (int j=i; j<arr.length-1; j++) {
                     arr[j] = arr[j+1];
                 }
                 arr[arr.length-1] = num;
                 i--;
-                System.out.println(Arrays.toString(arr));
             }
         }
 
