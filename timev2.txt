@@ -1,0 +1,41 @@
+Elapsed time with 1 masks: 0.018 seconds.
+Elapsed time with 2 masks: 0.001 seconds.
+Elapsed time with 3 masks: 0.0 seconds.
+Elapsed time with 4 masks: 0.001 seconds.
+Elapsed time with 5 masks: 0.001 seconds.
+Elapsed time with 6 masks: 0.0 seconds.
+Elapsed time with 7 masks: 0.001 seconds.
+Elapsed time with 8 masks: 0.002 seconds.
+Elapsed time with 9 masks: 0.002 seconds.
+Elapsed time with 10 masks: 0.002 seconds.
+Elapsed time with 11 masks: 0.006 seconds.
+Elapsed time with 12 masks: 0.011 seconds.
+Elapsed time with 13 masks: 0.021 seconds.
+Elapsed time with 14 masks: 0.03 seconds.
+Elapsed time with 15 masks: 0.036 seconds.
+Elapsed time with 16 masks: 0.04 seconds.
+Elapsed time with 17 masks: 0.065 seconds.
+Elapsed time with 18 masks: 0.122 seconds.
+Elapsed time with 19 masks: 0.137 seconds.
+Elapsed time with 20 masks: 0.25 seconds.
+Elapsed time with 21 masks: 1.087 seconds.
+Elapsed time with 22 masks: 1.488 seconds.
+Elapsed time with 23 masks: 2.273 seconds.
+Elapsed time with 24 masks: 4.729 seconds.
+Elapsed time with 25 masks: 12.658 seconds.
+Elapsed time with 26 masks: 28.191 seconds.
+Elapsed time with 27 masks: 97.051 seconds.
+Elapsed time with 28 masks: 174.731 seconds.
+Elapsed time with 29 masks: 283.918 seconds.
+Elapsed time with 30 masks: 522.394 seconds.
+
+a) Explain the details of your algorithm, and provide its time and space complexity. You must clearly justify how you estimated the complexity of your solution.
+
+The time complexity of this is exponential g(n) = 2^n. The reason that it is like this is because in the while loop, each iteration of the string no matter if it has masks or not, is added to the stack, which means there are 2 versions (0 and 1) of each string, to the power of the number of masks.
+
+The space complexity of this is the number of bytes per string (which is 2) times the number of strings generated in the program. Since there are 2^n strings generated, then the space complexity is 2^n+1 or O(2^n)
+
+b) Compare the complexities between version 1 and version 2
+The time complexities are the same O(2^n), just that version 2 takes a little more time before the exponential part kicks in.
+
+The space complexity is very different. The recurisve method takes much less space as it only depends linearly on the number of levels (or masks). The iterative version takes much less memory as it has to add each string created to the stack, no matter if it is a solution or not.

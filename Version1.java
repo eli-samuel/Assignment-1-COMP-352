@@ -7,60 +7,84 @@ import java.io.IOException;
 public class Version1 {
 
     public static void main(String[] args) {
-        int num = new Scanner(System.in).nextInt();
-        String begin = "";
-        for (int i=0; i<num; i++) {
-            begin += "*";
-        }
+        // Ask the user to input a random string with a random amount of masks
+        System.out.print("Input random string with masks: ");
+        String begin = new Scanner(System.in).next();
+
         System.out.println(begin);
+        begin = "";
 
-        long startTime = 0, endTime = 0;
         try {
-            PrintWriter p = new PrintWriter(new FileOutputStream("out.txt"));
+            for (int i=0; i<=25; i++) {
+                begin += "*";
+                // Open out.txt for printing
+                PrintWriter p = new PrintWriter(new FileOutputStream("out.txt"));
 
-            startTime = System.currentTimeMillis();
-            RevealStr(begin, p);
-            endTime = System.currentTimeMillis();
+                // Save the start time of the method
+                long startTime = System.currentTimeMillis();
+                RevealStr(begin, p);
+                // Save the end time of the method
+                long endTime = System.currentTimeMillis();
 
-            p.close();
+                // Close the file
+                p.close();
+
+                // Open time.txt file and print elapsed time to it
+                p = new PrintWriter(new FileOutputStream("time.txt", true));
+                p.println("Elapsed time with " + i + " masks: " + (endTime - startTime)/1000. + " seconds.");
+                p.close();
+            }
         }
         catch(IOException e) {
             System.out.println(e.getMessage());
         }
-
-        System.out.println((endTime - startTime)/1000. + " seconds.");
     }
 
+    /*
+     * This method uses recursion to find all possible compbinations of the string, then
+     * prints it to a file
+     * @param String s a string of 1s, 0s, and masks, PrintWriter p to print to file
+     * @return void
+     */
     public static void RevealStr(String s, PrintWriter p) {
-        // Change to array of chars
+        // Change string to array of strings by characters
         String[] arr = s.split("");
-
         String newStr = "";
         boolean star = false;
+
         for (int i=0; i<arr.length; i++) {
+            // Check to see if that element is a mask
             if (arr[i].equals("*")) {
                 star = true;
-                // Replace a star with a 1
                 newStr = "";
+                // Replace the mask with a 1, keep the rest of the string the same
                 for (int j=0; j<arr.length; j++) {
-                    if(i == j) newStr += 1;
+                    if (i == j) newStr += 1;
                     else newStr += arr[j];
                 }
-                // Call recursively on new number
+
+                // Call recursively on the updated number
                 RevealStr(newStr, p);
 
-                // Replace star with a 0
                 newStr = "";
+                // Replace the mask with a 0, keep the rest of the string the same
                 for (int j=0; j<arr.length; j++) {
-                    if(i == j) newStr += 0;
+                    if (i == j) newStr += 0;
                     else newStr += arr[j];
                 }
-                // Call recursively on new number
+
+                // Call recursively on the updated number
                 RevealStr(newStr, p);
-                break;
+                return;
             }
 
-            if (!star && i == arr.length-1) p.print(Arrays.toString(arr) + "\n");
+            // If there are no more masks in the number and the program has looped over the entire
+            // string, print that string to the file.
+            if (!star && i == arr.length-1) {
+                String print = "";
+                for (int j=0; j<arr.length; j++) print += arr[j];
+                p.print(print + "\n");
+            }
         }
     }
 }

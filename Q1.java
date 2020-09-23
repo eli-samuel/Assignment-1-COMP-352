@@ -5,7 +5,7 @@ public class Q1 {
     public static void main(String[] args) {
 
         // solution: {88, 70, 96, 38, 47, 1, 5, 51, 7, 3, 11}
-        int[] arr = {51, 7, 87, 3, 11, 71, 95, 31, 41, 1, 5};
+        int[] arr = {51, 7, 87, 3, 11, 71, 96, 31, 41, 1, 5};
         int numOdds = 0;
 
         // Check for number of odd nums first

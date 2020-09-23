@@ -1,0 +1,29 @@
+Elapsed time with 1 masks: 0.022 seconds.
+Elapsed time with 2 masks: 0.001 seconds.
+Elapsed time with 3 masks: 0.001 seconds.
+Elapsed time with 4 masks: 0.001 seconds.
+Elapsed time with 5 masks: 0.002 seconds.
+Elapsed time with 6 masks: 0.003 seconds.
+Elapsed time with 7 masks: 0.012 seconds.
+Elapsed time with 8 masks: 0.007 seconds.
+Elapsed time with 9 masks: 0.006 seconds.
+Elapsed time with 10 masks: 0.012 seconds.
+Elapsed time with 11 masks: 0.037 seconds.
+Elapsed time with 12 masks: 0.074 seconds.
+Elapsed time with 13 masks: 0.27 seconds.
+Elapsed time with 14 masks: 0.277 seconds.
+Elapsed time with 15 masks: 0.45 seconds.
+Elapsed time with 16 masks: 0.268 seconds.
+Elapsed time with 17 masks: 0.49 seconds.
+Elapsed time with 18 masks: 0.961 seconds.
+Elapsed time with 19 masks: 1.964 seconds.
+Elapsed time with 20 masks: 4.095 seconds.
+Elapsed time with 21 masks: 8.697 seconds.
+Elapsed time with 22 masks: 17.529 seconds.
+Elapsed time with 23 masks: 36.713 seconds.
+Elapsed time with 24 masks: 75.628 seconds.
+Elapsed time with 25 masks: 157.726 seconds.
+
+Observations on timing: The timing almost perfectly follows a y=2^x curve, which makes sense as the time complexity is O(2^n) because of the recusion based on the number of masks. My solution does NOT have an acceptable complexity and is definitely not scalable enough (going even past 40 reaches over 50000 seconds of time spent). It is fine for the first 20 or so masks, but as the time increases exponentially, it has an unacceptable time complexity. In other words, if we look at our recursion tree, since each node has 2 branches and we have n total levels, our number of nodes is 2^n which makes O(2^n).
+
+Space complexity: we must look at our recursion tree for this. Our tree will have a depth of n before it reaches the base case. Since each method call is stored on the stack, the space complexity is determined by the number of return statements or the recursion depth. Since there are n total levels, there are n methods on the stack at one given point, so the space complexity is O(n).
