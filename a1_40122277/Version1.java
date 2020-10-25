@@ -12,28 +12,24 @@ public class Version1 {
         String begin = new Scanner(System.in).next();
 
         System.out.println(begin);
-        begin = "";
 
         try {
-            for (int i=0; i<=25; i++) {
-                begin += "*";
-                // Open out.txt for printing
-                PrintWriter p = new PrintWriter(new FileOutputStream("out.txt"));
+            // Open out.txt for printing
+            PrintWriter p = new PrintWriter(new FileOutputStream("outv1.txt"));
 
-                // Save the start time of the method
-                long startTime = System.currentTimeMillis();
-                RevealStr(begin, p);
-                // Save the end time of the method
-                long endTime = System.currentTimeMillis();
+            // Save the start time of the method
+            long startTime = System.currentTimeMillis();
+            RevealStr(begin, p);
+            // Save the end time of the method
+            long endTime = System.currentTimeMillis();
 
-                // Close the file
-                p.close();
+            // Close the file
+            p.close();
 
-                // Open time.txt file and print elapsed time to it
-                p = new PrintWriter(new FileOutputStream("time.txt", true));
-                p.println("Elapsed time with " + i + " masks: " + (endTime - startTime)/1000. + " seconds.");
-                p.close();
-            }
+            // Open time.txt file and print elapsed time to it
+            p = new PrintWriter(new FileOutputStream("timev1.txt", true));
+            p.println("Elapsed time: " + (endTime - startTime)/1000. + " seconds.");
+            p.close();
         }
         catch(IOException e) {
             System.out.println(e.getMessage());
@@ -41,11 +37,11 @@ public class Version1 {
     }
 
     /*
-     * This method uses recursion to find all possible compbinations of the string, then
-     * prints it to a file
-     * @param String s a string of 1s, 0s, and masks, PrintWriter p to print to file
-     * @return void
-     */
+    * This method uses recursion to find all possible combinations of the string, then
+    * prints it to a file
+    * @param String s a string of 1s, 0s, and masks, PrintWriter p to print to file
+    * @return void
+    */
     public static void RevealStr(String s, PrintWriter p) {
         // Change string to array of strings by characters
         String[] arr = s.split("");

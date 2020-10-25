@@ -10,41 +10,36 @@ public class Version2 {
         String begin = new Scanner(System.in).next();
 
         System.out.println(begin);
-        begin = "";
 
         try {
-            for (int i=1; i<=30; i++) {
-                begin += "*";
-                // Open out.txt for printing
-                PrintWriter p = new PrintWriter(new FileOutputStream("outv2.txt"));
+            // Open out.txt for printing
+            PrintWriter p = new PrintWriter(new FileOutputStream("outv2.txt"));
 
-                // Save the start time of the method
-                long startTime = System.currentTimeMillis();
-                RevealStr(begin, p);
-                // Save the end time of the method
-                long endTime = System.currentTimeMillis();
+            // Save the start time of the method
+            long startTime = System.currentTimeMillis();
+            RevealStr(begin, p);
+            // Save the end time of the method
+            long endTime = System.currentTimeMillis();
 
-                // Close the file
-                p.close();
+            // Close the file
+            p.close();
 
-                // Open time.txt file and print elapsed time to it
-                p = new PrintWriter(new FileOutputStream("timev2.txt", true));
-                p.println("Elapsed time with " + i + " masks: " + (endTime - startTime)/1000. + " seconds.");
-                p.close();
-            }
+            // Open time.txt file and print elapsed time to it
+            p = new PrintWriter(new FileOutputStream("timev2.txt", true));
+            p.println("Elapsed time: " + (endTime - startTime)/1000. + " seconds.");
+            p.close();
         }
         catch(IOException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     /*
-     * This method uses a stack to find all possible compbinations of the string, then
-     * prints it to a file
-     * @param String s a string of 1s, 0s, and masks, PrintWriter p to print to file
-     * @return void
-     */
+    * This method uses a stack to find all possible compbinations of the string, then
+    * prints it to a file
+    * @param String s a string of 1s, 0s, and masks, PrintWriter p to print to file
+    * @return void
+    */
     public static void RevealStr(String s, PrintWriter p) {
         // New stack to hold the strings
         Stack<String> stack = new Stack<String>();

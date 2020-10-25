@@ -1,0 +1,65 @@
+#Assignment 1 COMP 352
+#Eli Samuel 40122277
+
+##Programming Part 1
+###Algorithm RevealStr(s, p)
+
+    Input string s of random size and random masks, printwriter p to print to a file
+    Output strings with all the masks filled
+
+    _Variables_
+    arr <- s.split("")
+    newStr <- ""
+    star <- false
+
+    for i=0 to i<arr length do
+        if arr[i] is a * then
+            star <- true
+            newStr <- ""
+            for j=0 to j<arr length do
+                if i is j then
+                    newStr <- newStr + 1
+                else
+                    newStr <- newStr + arr[j]
+
+            RevealStr(newStr, p)
+
+            newStr <- ""
+            for j=0 to j<arr length do
+                if i is j then
+                    newStr <- newStr + 0
+                else
+                    newStr <- newStr + arr[j]
+
+            RevealStr(newStr, p)
+            return
+
+        if !star and i is arr.length then
+            print <- ""
+            for j=0 to j<arr.length do
+                print <- print + arr[j]
+            output print to file
+
+##Programming Part 2
+###Algorithm RevealStr(s, p)
+
+    Input string s of random size and random masks, printwriter p to print to a file
+    Output strings with all the masks filled
+
+    _Variables_
+
+    stack <- instantiate new stack
+    push s to stack
+    index <- 0
+
+    while stack is not empty do
+        result <- pop from stack
+
+        if there is a * in result then
+            index <- index of * in result
+            for num=0 to num<=1 do
+                result = result substring from beginning to index + num + result substring from index+1 to end
+                push result to the stack
+
+        else
+            output result to file

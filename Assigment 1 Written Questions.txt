@@ -1,7 +1,7 @@
 #Assignment 1 COMP 352
+#Eli Samuel 40122277
 
 ##Question 1
-
 ###Algorithm moveOddNumbers(arr)
 
     Input array arr of integers
@@ -26,6 +26,9 @@
     print arr
 
 _a) What is the time complexity of your algorithm, in terms of Big-O?_
+Each number represents each line starting from the first variable
+1
+1
 
 1+(n+1)+n
 n
@@ -46,14 +49,13 @@ f(n) = 2n^2 + 13n + 4
 g(n) = n^2
 O(n^2)
 
-This makes sense because a double for loop = n^2 --> O(n^2)
+In the pseudocode, a double for loop is used = n^2 --> O(n^2)
 
 _b) What is the space complexity of your algorithm, in terms of Big-O?_
 
-
+Since the size of the array is n, and the array is made up of integers, the space complexity will be 4n or O(n).
 
 ##Question 2
-
 ###Algorithm largestAndSmallestProduct(arr)
 
     Input array arr of integers
@@ -113,41 +115,45 @@ _a) 8000000n^2 log n + n^3 is O(n^3 log n)_
 f(x) exists in O(g(x)) if there exists c, x0 > 0 such that f(x) <= c*g(x) for all x >= x0
 f(n) = 8000000n^2 log n + n^3
 g(n) = n^3 log n
-let c = 8000000
+let c = 8000001
 
 value of n     f(n)               c*g(n)
    1            1                   0
-   2            32000000log2+8      32000000log2
-   3            72000000log3+27     72000000log3
+   2            32000000log2+8      64000008log2
+   3            72000000log3+27     216000027log3
 
-_b) 106n^2 + 3n^7 + 5n^3 is Θ(n^3)_ FALSE
+8000000n^2 log n + n^3 <= (8000000+1)n^3logn = cn^3logn, for c = 8000001 when n > n0 = 1
+Therefore this relationship is true.
+
+_b) 106n^2 + 3n^7 + 5n^3 is Θ(n^3)_
 f(n) = 10^6n^2 + 3n^7 + 5n^3
 g(n) = n^3
-let c1 = 10^5, c2 = 10^5
+let c1 = x, c2 = y
 
-<!-- value of n     c1*g(n)      f(n)               c2*g(n)
-   1                        1 000 008          1         
-   2                        4 000 424          40
-   3                        9006696            135
+lim f(n) as n -> infinity = lim n^7
+lim c*g(n) as n-> infinity = lim n^3
 
-c2*g(n) < f(n) for n > 0
-However, for any c1, c1*g(n) < f(n) at some point
-Thus this is true -->
+lim f(n)/g(n) = lim n^7/n^3 = infinity
 
-lim f(n) as n -> infinity = n^7
-lim c*g(n) as n-> infinity = n^3
+According to the limit asymtotic theorem, f(n) is part of Ω(g(n)) therefore the statement is false
 
 Therefore, there is no upper bound for g(n) = n^3
+This relationship is false.
 
-_c) 0.1n^3 + 0.0000005n^6 is Θ(n^3)_ FALSE
+_c) 0.1n^3 + 0.0000005n^6 is Θ(n^3)_
 f(n) = 0.1n^3 + 0.0000005n^6
 g(n) = n^3
 let c1 = x, c2 = y
 
-lim f(n) as n -> infinity = n^6
-lim c*g(n) as n-> infinity = n^3
+lim f(n) as n -> infinity = lim n^6
+lim c*g(n) as n-> infinity = lim n^3
+
+lim f(n)/g(n) = lim n^6/n^3 = infinity
+
+According to the limit asymtotic theorem, f(n) is part of Ω(g(n)) therefore the statement is false
 
 Therefore, there is no upper bound for g(n) = n^3
+This relationship is false.
 
 _d) n^4 + 0.0000001n^3 is Ω(n^3)_
 f(n) = n^4 + 0.0000001n^3
@@ -159,94 +165,32 @@ value of n     f(n)               c*g(n)
    2            >16                 8
    3            >81                 27
 
+n^4 + 0.0000001n^3 >= (1+0.0000001)n^3 = cn^3, for c = 1.0000001 when n >= n0 = 1
+
 For all values of n >= 1, c*g(n) > f(n), thus Ω(n^3) is true.
 
 _e) n! is Θ(2^n)_
 f(n) = n!
 g(n) = 2^n
-let c1 = x, c2 = 1
+let c1 = x, c2 = y
 
-c2*g(n) < f(n) for n > 3
+lim f(n) as n -> infinity = lim n!
+lim c*g(n) as n-> infinity = lim 2^n
 
-lim f(n) as n -> infinity > lim c*g(n) as n-> infinity
+lim f(n)/g(n) = lim n!/2^n = infinity
 
-Therefore, there is no upper bound for g(n) = 2^n
+According to the limit asymtotic theorem, f(n) is part of Ω(g(n)) therefore the statement is false.
 
+There is no upper bound for g(n) = n^3
+This relationship is false.
 
 _f) n^n is Ω(n!)_
 f(n) = n^n
 g(n) = n!
-let c = 1
 
-value of n     f(n)               c*g(n)
-   1            1                  1
-   2            4                  2
-   3            27                 6
+n^n = n * n * n ... * n
+n! = n(n-1)(n-2)...2*1
 
-   For any c1, c1*g(n) < f(n) at some point
+n * n * n ... * n > n(n-1)(n-2)...2*1 for n>0
 
-
-##Programming Part 1
-
-###Algorithm RevealStr(s, p)
-
-    Input string s of random size and random masks, printwriter p to print to a file
-    Output strings with all the masks filled
-
-    _Variables_
-    arr <- s.split("")
-    newStr <- ""
-    star <- false
-
-    for i=0 to i<arr length do
-        if arr[i] is a * then
-            star <- true
-            newStr <- ""
-            for j=0 to j<arr length do
-                if i is j then
-                    newStr <- newStr + 1
-                else
-                    newStr <- newStr + arr[j]
-
-            RevealStr(newStr, p)
-
-            newStr <- ""
-            for j=0 to j<arr length do
-                if i is j then
-                    newStr <- newStr + 0
-                else
-                    newStr <- newStr + arr[j]
-
-            RevealStr(newStr, p)
-            return
-
-        if !star and i is arr.length then
-            print <- ""
-            for j=0 to j<arr.length do
-                print <- print + arr[j]
-            output print to file
-
-##Programming Part 1
-
-###Algorithm RevealStr(s, p)
-
-    Input string s of random size and random masks, printwriter p to print to a file
-    Output strings with all the masks filled
-
-    _Variables_
-
-    stack <- instantiate new stack
-    push s to stack
-    index <- 0
-
-    while stack is not empty do
-        result <- pop from stack
-
-        if there is a * in result then
-            index <- index of * in result
-            for num=0 to num<=1 do
-                result = result substring from beginning to index + num + result substring from index+1 to end
-                push result to the stack
-
-        else
-            output result to file
+Thus the relationship is true.
